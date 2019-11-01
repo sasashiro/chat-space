@@ -1,6 +1,5 @@
 ####DB設計
 
-## groups_usersテーブル
 ## userテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -28,7 +27,7 @@
 |group_id|integer|null: false, foreign_key: true|
 ### Association
 - belongs_to :group
-- belongs_to :user- belongs_to :user
+- belongs_to :user
 
 ## messageテーブル
 |Column|Type|Options|
