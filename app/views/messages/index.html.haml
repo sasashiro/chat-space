@@ -1,69 +1,45 @@
-.header
-  .header-notification
-    グループを作成しました
-.chat-bar
-  .bar-header
-    .bar-header__name-box
-      seo
-    %ul.bar-header__bottons
-      %li.botton
-        =link_to "#" do
-          = fa_icon 'pencil-square-o', class: "botton"
-          %span<>
-      %li.botton
-        = link_to '#' do
-          = fa_icon 'cog', class: 'botton'
-          %span<>
-  .groups
-    .group
-      .group__group-name
-        sample-group
-      .group__group-message
-        Hello world!
-    .group
-      .group__group-name
-        example
-      .group__group-message
-        まだメッセージがありません
+.wrapper
 
-.chat-main
-  .main-header
-    .main-header-upper
-      .main-header-upper__group-name
-        Sample
-      %ul.main-header-upper__group-members
-        Member:
-        %li.member
-          seo
-        %li.member
-          neko
-    .main-header-edit
-      .main-header-edit__botton
-        Edit
-  .messages
-    .message
-      .message-upper
-        .message-upper__group
-          seo
-        .message-upper__date
-          2019/11/1 10:00:00 
-      .message-main
-        .message-main__text
-          Hello world!
-    .message
-      .message-upper
-        .message-upper__group
-          neko
-        .message-upper__date
-          2019/10/31 10:00:00 
-      .message-main
-        .message-main__text
-          Good bye world!
-  .form
-    %form
-      %input.form__message
-      .form__mask
-        %label.form__mask__image
-          = fa_icon 'picture-o', class: 'icon'
-          %input.hidden{type: 'file'}
-      %input.form__submit{type: 'submit', value: 'Send'}
+  = render 'shared/chat-bar'
+
+  .chat-main
+    .main-header
+      .main-header-upper
+        .main-header-upper__group-name
+          Sample
+        %ul.main-header-upper__group-members
+          Member:
+          %li.member
+            seo
+          %li.member
+            neko
+      .main-header-edit
+        .main-header-edit__botton
+          Edit
+    .messages
+      .message
+        .message-upper
+          .message-upper__group
+            seo
+          .message-upper__date
+            2019/11/1 10:00:00 
+        .message-main
+          .message-main__text
+            Hello world!
+      .message
+        .message-upper
+          .message-upper__group
+            neko
+          .message-upper__date
+            2019/10/31 10:00:00 
+        .message-main
+          .message-main__text
+            Good bye world!
+    .form
+      %form
+        %input.form__message
+        .form__mask
+          %label.form__mask__image
+            = fa_icon 'picture-o', class: 'icon'
+            %input.hidden{type: 'file'}
+        %input.form__submit{type: 'submit', value: 'Send'}
