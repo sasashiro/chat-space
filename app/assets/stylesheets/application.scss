@@ -2,6 +2,10 @@
 @import "config/reset";
 @import "config/colors";
 @import "config/font-size";
+@import "mixins/vendor_prefix.scss";
 @import "modules/chat-bar";
 @import "modules/chat-main";
-@import "messages";
+@import "modules/flash";
+@import "modules/user";
+@import "modules/group";
+@import "messages/messages.scss";
