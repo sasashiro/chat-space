@@ -4,21 +4,16 @@
       = current_user.name
     %ul.bar-header__bottons
       %li.botton
-        =link_to "#" do
-          = fa_icon 'pencil-square-o', class: "botton"
-          %span<>
+        = link_to new_group_path do
+          = fa_icon 'edit', class: 'botton'
       %li.botton
-        = link_to '#' do
+        = link_to edit_user_path(current_user) do
           = fa_icon 'cog', class: 'botton'
-          %span<>
   .groups
-    .group
-      .group__group-name
-        sample-group
-      .group__group-message
-        Hello world!
-    .group
-      .group__group-name
-        example
-      .group__group-message
-        まだメッセージがありません
+    - current_user.groups.each do |group|
+      .group
+        = link_to group_messages_path(group) do
+          .group__group-name
+            = group.name
+          .group__group-message
+            メッセージはまだありません。
