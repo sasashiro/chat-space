@@ -1,45 +1,30 @@
 .wrapper
 
   = render 'shared/chat-bar'
-
+  
+  
   .chat-main
     .main-header
-      .main-header-upper
-        .main-header-upper__group-name
-          Sample
-        %ul.main-header-upper__group-members
-          Member:
-          %li.member
-            seo
-          %li.member
-            neko
-      .main-header-edit
-        .main-header-edit__botton
-          Edit
-    .messages
-      .message
-        .message-upper
-          .message-upper__group
-            seo
-          .message-upper__date
-            2019/11/1 10:00:00 
-        .message-main
-          .message-main__text
-            Hello world!
-      .message
-        .message-upper
-          .message-upper__group
-            neko
-          .message-upper__date
-            2019/10/31 10:00:00 
-        .message-main
-          .message-main__text
-            Good bye world!
+      - current_user.groups.each do |group|
+        .main-header-upper
+          = link_to group_messages_path(group) do
+            .main-header-upper__group-name
+              = group.name
+            %ul.main-header-upper__group-members
+              Member:
+              %li.member
+                = current_user.name
+        .main-header-edit
+          .main-header-edit__botton
+            = link_to "Edit", edit_group_path(@group)
+
+    = render 'messages/chat-main'
+    
     .form
-      %form
-        %input.form__message
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
         .form__mask
-          %label.form__mask__image
-            = fa_icon 'picture-o', class: 'icon'
-            %input.hidden{type: 'file'}
-        %input.form__submit{type: 'submit', value: 'Send'}
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'image', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'

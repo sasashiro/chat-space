@@ -35,6 +35,8 @@
     }
   }
   .messages {
+    width: 100%;
+    float: left;
     box-sizing: border-box;
     background-color: #fafafa;
     padding: 46px 40px 0;
@@ -64,6 +66,8 @@
     }
   }
   .form {
+    width: 100%;
+    float: left;
     background-color: #DDDDDD;
     box-sizing: border-box;
     height: 90px;
