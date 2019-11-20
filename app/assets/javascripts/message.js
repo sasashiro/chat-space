@@ -1,10 +1,6 @@
 $(function(){
   function buildHTML(message){
-    // var attachImage = message.image ? `<img src="${message.image}" class="message-main__image">`
-    var insertImage = '';
-        if (message.image.url) {
-            insertImage = `<img src="${message.image.url}">`;
-        }
+    var insertImage = message.image ? `<img src="${message.image}" class="message-main__image">`: "";
     var html = `<div class="message">
                   <div class="message-upper">
                     <div class="message-upper__group">
@@ -26,6 +22,9 @@ $(function(){
   function scroll_view() {
     $('.messages').animate({ scrollTop: $(".messages")[0].scrollHeight }, 500);
   }
+  function form_reset() {
+    $('#new_message')[0].reset();
+  }
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this)
@@ -44,6 +43,7 @@ $(function(){
       $('.form__message').val('');
       $('.form__submit').prop('disabled', false);
       scroll_view();
+      form_reset();
     })
     .fail(function(){
       alert('error');
