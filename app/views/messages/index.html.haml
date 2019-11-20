@@ -1,25 +1,22 @@
 .wrapper
-
-  = render 'shared/chat-bar'
-  
-  
+  .chat-bar
+    = render 'shared/chat-bar'
   .chat-main
     .main-header
-      - current_user.groups.each do |group|
-        .main-header-upper
-          = link_to group_messages_path(group) do
-            .main-header-upper__group-name
-              = group.name
-            %ul.main-header-upper__group-members
-              Member:
-              %li.member
-                = current_user.name
-        .main-header-edit
-          .main-header-edit__botton
-            = link_to "Edit", edit_group_path(@group)
-
-    = render 'messages/chat-main'
-    
+      .main-header-upper
+        = link_to group_messages_path(@group) do
+          .main-header-upper__group-name
+            = @group.name
+          %ul.main-header-upper__group-members
+            Member:
+            %li.member
+              = current_user.name
+      .main-header-edit
+        .main-header-edit__botton
+          = link_to "Edit", edit_group_path(@group)
+    .messages
+      -# = render 'messages/chat-main'
+      = render @messages
     .form
       = form_for [@group, @message] do |f|
         = f.text_field :content, class: 'form__message', placeholder: 'type a message'

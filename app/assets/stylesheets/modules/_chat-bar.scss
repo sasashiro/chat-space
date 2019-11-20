@@ -1,6 +1,7 @@
 .chat-bar {
   box-sizing: border-box;
   width: 300px;
+  height: 100%;
   color: #FFFFFF;
   float: left;
   .bar-header {
@@ -38,6 +39,8 @@
         color: #FFFFFF;
         font-size: 11px;
         margin-top: 5px;
+        // border-bottom: solid thin;
+        // border-bottom-color: #FFFFFF;
       }
     }
   }  
