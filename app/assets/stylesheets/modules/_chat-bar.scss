@@ -27,6 +27,7 @@
     padding: 0 20px;
     background-color: #2f3e51;
     height: calc(100vh - 100px);
+    // overflow: scroll;
     .group {
       &__group-name {
         color: #FFFFFF;
@@ -39,8 +40,6 @@
         color: #FFFFFF;
         font-size: 11px;
         margin-top: 5px;
-        // border-bottom: solid thin;
-        // border-bottom-color: #FFFFFF;
       }
     }
   }  
