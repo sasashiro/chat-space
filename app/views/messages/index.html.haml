@@ -8,9 +8,9 @@
           .main-header-upper__group-name
             = @group.name
           %ul.main-header-upper__group-members
-            Member:
-            %li.member
-              = current_user.name
+            Member：
+            - @group.users.each do|user|
+              %li.main-header__left-box__member-list__member #{user.name} 
       .main-header-edit
         .main-header-edit__botton
           = link_to "Edit", edit_group_path(@group)

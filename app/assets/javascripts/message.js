@@ -1,24 +1,62 @@
 $(function(){
-  function buildHTML(message){
-    var insertImage = message.image ? `<img src="${message.image}" class="message-main__image">`: "";
-    var html = `<div class="message">
-                  <div class="message-upper">
-                    <div class="message-upper__group">
-                      ${message.user}
+  var buildHTML = function(message) {
+    if (message.content && message.image) {
+      var insertImage = message.image ? `<img src="${message.image}" class="message-main__image">`: "";
+      var html = `<div class="message" data-message-id="${message.id}">
+                    <div class="message-upper">
+                      <div class="message-upper__group">
+                        ${message.user}
+                      </div>
+                      <div class="message-upper__date">
+                        ${message.date}
+                      </div>
                     </div>
-                    <div class="message-upper__date">
-                      ${message.date}
+                    <div class="message-main">
+                      <p class="message-main__text">
+                        ${message.content}
+                      </p>
+                      ${insertImage}
                     </div>
-                  </div>
-                  <div class="message-main">
-                    <p class="message-main__text">
-                      ${message.content}
-                    </p>
-                    ${insertImage}
-                  </div>
-                </div>`
+                  </div>`
+    } else if (message.content) {
+      var insertImage = message.image ? `<img src="${message.image}" class="message-main__image">`: "";
+      var html = `<div class="message" data-message-id="${message.id}">
+                    <div class="message-upper">
+                      <div class="message-upper__group">
+                        ${message.user}
+                      </div>
+                      <div class="message-upper__date">
+                        ${message.date}
+                      </div>
+                    </div>
+                    <div class="message-main">
+                      <p class="message-main__text">
+                        ${message.content}
+                      </p>
+                      ${insertImage}
+                    </div>
+                  </div>`
+    } else if (message.image) {
+      var insertImage = message.image ? `<img src="${message.image}" class="message-main__image">`: "";
+      var html = `<div class="message" data-message-id="${message.id}">
+                    <div class="message-upper">
+                      <div class="message-upper__group">
+                        ${message.user}
+                      </div>
+                      <div class="message-upper__date">
+                        ${message.date}
+                      </div>
+                    </div>
+                    <div class="message-main">
+                      <p class="message-main__text">
+                        ${message.content}
+                      </p>
+                      ${insertImage}
+                    </div>
+                  </div>`
+    };
     return html;
-  }
+  };
   function scroll_view() {
     $('.messages').animate({ scrollTop: $(".messages")[0].scrollHeight }, 500);
   }
@@ -46,7 +84,28 @@ $(function(){
       form_reset();
     })
     .fail(function(){
-      alert('error');
+      alert('メッセージを入力してください。');
     });
-  })
+  });
+  var reloadMessages = function() {
+    last_message_id = $('.message:last').data('message-id')
+    $.ajax({
+      url:      'api/messages',
+      type:     'get',
+      dataType: 'json',
+      data:     {id: last_message_id}
+    })
+    .done(function(messages) {
+      var insertHTML = '';
+      $.each(messages, function(i, message) {
+        insertHTML += buildHTML(message)
+      });
+      $('.messages').append(insertHTML);
+      scroll_view();
+    })
+    .fail(function() {
+      alert('メッセージが送信できません');
+    });
+  };
+  setInterval(reloadMessages, 7000)
 });
