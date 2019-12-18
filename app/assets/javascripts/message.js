@@ -107,5 +107,5 @@ $(function(){
       alert('メッセージが送信できません');
     });
   };
-  // setInterval(reloadMessages, 7000)
+  setInterval(reloadMessages, 7000)
 });
